@@ -1,0 +1,147 @@
+{% extends 'layout.html' %} {% block start %}
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f7f7;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333333;
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    h2 {
+        text-align: center;
+        color: #4CAF50;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    form {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    input[type="file"] {
+        margin-right: 10px;
+        padding: 10px 20px;
+        border: none;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    .clear-btn {
+        background-color: #f44336;
+        margin-left: 10px;
+    }
+    
+    .clear-btn:hover {
+        background-color: #dd1919;
+    }
+    
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 4px solid #ddd;
+        animation: fadeIn 1s;
+    }
+    
+    ol {
+        list-style-type: decimal;
+        padding-left: 20px;
+        margin-top: 0;
+    }
+    
+    li {
+        margin-bottom: 10px;
+        color: #555555;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="container">
+    <div>
+        <h1>Image Identification</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="imageFile">
+            <button type="submit">Analyze</button>
+            <button type="button" class="clear-btn" onclick="clearImage()">Clear</button>
+        </form>
+    </div>
+
+    {% if image_url %}
+    <div>
+        <img id="uploaded-image" src="{{ image_url }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+
+    <div>
+        <h2>Predictions</h2>
+        <ol>
+            {% for prediction in predictions %}
+            <li>{{ prediction.1 }} ({{ prediction.0 }}) - Probability: {{ prediction.2 }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+
+    <script>
+        function clearImage() {
+            document.getElementById('uploaded-image').src = '';
+            // Add additional logic here to clear predictions if needed
+        }
+
+        function validateForm() {
+            var fileInput = document.getElementById('imageFile');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('Please upload an image.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+    {% endblock %}
