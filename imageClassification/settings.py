@@ -29,13 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-dow4!2r@85^b1^ib2y75$_q29fq0@_h@16f=oi+wspfh%5(v&4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'image-recognition-fg3g.onrender.com',
-    'localhost',  # Include localhost for local development
-    '127.0.0.1',  # Include localhost IP for local development
-]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
