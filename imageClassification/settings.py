@@ -17,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-dow4!2r@85^b1^ib2y75$
 DEBUG = True if ENVIRONMENT == 'development' else False
 
 # Set allowed hosts
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'image-recognition-r7cr.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
