@@ -13,6 +13,7 @@ def preprocess_image(image):
     image_array = img_to_array(image)
     expanded_image = np.expand_dims(image_array, axis=0)
     return vgg16.preprocess_input(expanded_image.copy())
+
 def home(request):
     if request.method == "POST":
         # Django image API
