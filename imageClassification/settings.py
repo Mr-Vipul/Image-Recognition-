@@ -4,19 +4,15 @@ import os
 import dj_database_url
 from decouple import config, Csv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Get the environment value from .env
 ENVIRONMENT = config('ENVIRONMENT', default='development')
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-dow4!2r@85^b1^ib2y75$_q29fq0@_h@16f=oi+wspfh%5(v&4')
 
-# Set DEBUG based on ENVIRONMENT
 DEBUG = True if ENVIRONMENT == 'development' else False
 
-# Set allowed hosts
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'image-recognition-r7cr.onrender.com']
 
 # Application definition
